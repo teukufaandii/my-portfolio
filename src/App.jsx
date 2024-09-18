@@ -6,9 +6,12 @@ import Parallax from "./components/parallax/Parallax";
 import Portfolio from "./components/portfolio/Portfolio";
 import Services from "./components/services/Services";
 
+import { Analytics } from "@vercel/analytics/react";
+
 const App = () => {
   return (
     <div>
+      <Analytics />
       <section id="Homepage">
         <Navbar />
         <Hero />
