@@ -55,12 +55,21 @@
         position: absolute;
         margin: auto;
         z-index: -1;
+
+        @include mobile {
+            display: none;
+        }
     }
 
     form {
       display: flex;
       flex-direction: column;
       gap: 20px;
+
+      @include mobile {
+        position: relative;
+        bottom: 50px;
+      }
 
       input, textarea {
         padding: 20px;

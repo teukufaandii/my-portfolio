@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./contact.scss";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
@@ -19,19 +19,38 @@ const variants = {
 };
 
 const Contact = () => {
+
+  const useIsMobile = () => {
+    const [isMobile, setIsMobile] = useState(false);
+  
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 738);
+      };
+  
+      handleResize();
+  
+      window.addEventListener("resize", handleResize);
+  
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }, []);
+  
+    return isMobile;
+  };
+
   const formRef = useRef();
+  const isMobile = useIsMobile(); 
 
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
 
-
   const sendEmail = (e) => {
     e.preventDefault();
-    console.log(formRef.current);
-  
     emailjs
-      .sendForm('service_uyzpuvb', 'template_hdqg38i', formRef.current, {
-        publicKey: 'rHIQ5JHLvYCsi-Z2w',
+      .sendForm("service_uyzpuvb", "template_hdqg38i", formRef.current, {
+        publicKey: "rHIQ5JHLvYCsi-Z2w",
       })
       .then(
         (result) => {
@@ -101,7 +120,10 @@ const Contact = () => {
           ref={formRef}
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ delay: 4, duration: 1 }}
+          transition={{
+            delay: isMobile ? 0 : 4,
+            duration: 1,
+          }}
         >
           <input type="text" required placeholder="Name" name="name" />
           <input type="text" required placeholder="Email" name="email" />
