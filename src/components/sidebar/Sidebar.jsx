@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Links from "./links/Links";
 import "./sidebar.scss";
-import ToggleButton from "./toggleButton/toggleButton";
+import ToggleButton from "./toggleButton/ToggleBtn";
 
 import { delay, motion } from "framer-motion";
 
