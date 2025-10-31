@@ -12,16 +12,9 @@ const items = [
   },
   {
     id: 2,
-    title: "TEKNOID Campus Attendence Web Application (OnGoing)",
+    title: "TEKNOID Campus Attendence Web Application (Completed 1.0)",
     img: "/absensi.png",
-    desc: "The TEKNOID Campus Attendance Web Application (OnGoing) is designed to streamline attendance tracking across campus. It enables efficient and accurate recording of attendance for staff, enhancing accountability and management with improved performance and usability.",
-    link: "http://teknoid.itb-ad.ac.id"
-  },
-  {
-    id: 3,
-    title: "TEKNOID Campus Inventory Desktop Application (Coming Soon)",
-    img: "/comingSoon.jpg",
-    desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
+    desc: "The TEKNOID Campus Attendance Web Application (Completed 1.0) is designed to streamline attendance tracking across campus. It enables efficient and accurate recording of attendance for staff, enhancing accountability and management with improved performance and usability.",
     link: "http://teknoid.itb-ad.ac.id"
   },
 ];
