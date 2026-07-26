@@ -2,7 +2,7 @@ export const servicesData = [
   {
     id: 1,
     title: "Backend & API Architecture",
-    description: "Perancangan RESTful API performa tinggi berbasis Golang (Gin, GORM) & PHP dengan penerapan Clean Architecture, middleware keamanan, dan sistem RBAC dinamis.",
+    description: "Perancangan RESTful API performa tinggi berbasis Golang (Gin, GORM) & PHP dengan penerapan Clean Architecture, middleware keamanan, dan sistem RBAC terpusat.",
     tags: ["Golang", "Gin", "PHP", "Clean Arch", "REST API", "RBAC"]
   },
   {

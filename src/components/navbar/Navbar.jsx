@@ -25,7 +25,7 @@ const Navbar = () => {
               rel="noopener noreferrer"
               title={social.name}
             >
-              <img src={`/${social.icon}.png`} alt={social.name} />
+              <img src={social.icon} alt={social.name} />
             </a>
           ))}
         </div>

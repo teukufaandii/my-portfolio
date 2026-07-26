@@ -102,38 +102,43 @@
     display: flex;
     max-width: 1366px;
     margin: auto;
+    gap: 20px;
 
     @include mobile {
       flex-direction: column;
       width: 100%;
+      gap: 15px;
     }
 
     .box {
       padding: 30px;
-      border: 0.5px solid gray;
+      background-color: #111123;
+      border: 1px solid rgba(255, 255, 255, 0.1);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       gap: 15px;
-      border-radius: 8px;
+      border-radius: 12px;
       transition: all 0.3s ease;
 
       @include mobile {
-        border: none;
         align-items: center;
         gap: 15px;
-        padding: 15px;
+        padding: 20px;
       }
 
       h2 {
         font-size: 22px;
         font-weight: 600;
+        color: #ffffff;
+        transition: color 0.3s ease;
       }
 
       p {
         font-size: 14px;
-        line-height: 1.5;
-        color: lightgray;
+        line-height: 1.6;
+        color: #b3b3c6;
+        transition: color 0.3s ease;
       }
 
       .serviceTags {
@@ -143,13 +148,28 @@
         margin-top: 10px;
 
         .tagBadge {
-          padding: 4px 10px;
+          padding: 5px 12px;
           background-color: rgba(255, 165, 0, 0.15);
-          color: orange;
+          color: #ffa500;
           border: 1px solid rgba(255, 165, 0, 0.3);
           border-radius: 12px;
           font-size: 12px;
           font-weight: 500;
+        }
+      }
+
+      &:hover {
+        transform: translateY(-8px);
+        border-color: #ffa500;
+        box-shadow: 0 10px 30px rgba(255, 165, 0, 0.15);
+        background-color: #181830;
+
+        h2 {
+          color: #ffa500;
+        }
+
+        p {
+          color: #ffffff;
         }
       }
     }

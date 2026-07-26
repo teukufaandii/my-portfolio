@@ -16,15 +16,9 @@ const Single = ({ item }) => {
     <section>
       <div className="container">
         <div className="wrapper">
-          <div className={`gradientCard ${item.gradientTheme || "purple"}`} ref={ref}>
+          <div className="imageContainer" ref={ref}>
+            <img src={item.img} alt={item.title} />
             <div className="cardBadge">{item.category}</div>
-            <div className="techIconDisplay">
-              {item.techIcons.map((icon) => (
-                <span key={icon} className="techIconPill">
-                  {icon.toUpperCase()}
-                </span>
-              ))}
-            </div>
           </div>
           <motion.div className="textContainer" style={{ y }}>
             <h2>{item.title}</h2>

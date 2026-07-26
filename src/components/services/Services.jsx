@@ -60,7 +60,6 @@ const Services = () => {
           <motion.div
             key={service.id}
             className="box"
-            whileHover={{ background: "lightgray", color: "black" }}
           >
             <h2>{service.title}</h2>
             <p>{service.description}</p>
