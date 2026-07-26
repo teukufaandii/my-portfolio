@@ -1,7 +1,7 @@
 import Sidebar from "../sidebar/Sidebar";
 import "./navbar.scss";
-
 import { motion } from "framer-motion";
+import { profileData } from "../../data/profileData";
 
 const Navbar = () => {
   return (
@@ -14,21 +14,20 @@ const Navbar = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          AndyyDev
+          {profileData.name}
         </motion.span>
         <div className="social">
-          <a href="https://facebook.com/teukufaandii">
-            <img src="/facebook.png" alt="" />
-          </a>
-          <a href="https://instagram.com/teukufaandii">
-            <img src="/instagram.png" alt="" />
-          </a>
-          <a href="https://youtube.com/@andyy.0903">
-            <img src="/youtube.png" alt="" />
-          </a>
-          <a href="https://github.com/teukufaandii">
-            <img src="/github.png" alt="" />
-          </a>
+          {profileData.socials.map((social) => (
+            <a
+              key={social.name}
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={social.name}
+            >
+              <img src={social.icon} alt={social.name} />
+            </a>
+          ))}
         </div>
       </div>
     </div>

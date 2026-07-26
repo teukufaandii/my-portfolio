@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./hero.scss";
 import { motion } from "framer-motion";
-
-const codeSnippets = ["HTML", "CSS", "JavaScript", "React", "Node.js", "PHP", "MySQL"];
+import { profileData } from "../../data/profileData";
 
 const textVariants = {
   initial: {
@@ -41,27 +40,7 @@ const sliderVariants = {
   },
 };
 
-const typewriterVariants = {
-  initial: { width: "0ch" },
-  animate: (i) => ({
-    width: `${i}ch`,
-    transition: {
-      duration: 2,
-      type: "spring",
-    },
-  }),
-};
-
 const Hero = () => {
-  const [snippetIndex, setSnippetIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setSnippetIndex((prevIndex) => (prevIndex + 1) % codeSnippets.length);
-    }, 3000); // Change every 3 seconds
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <div className="hero">
       <div className="wrapper">
@@ -71,25 +50,36 @@ const Hero = () => {
           initial="initial"
           animate="animate"
         >
-          <motion.h2 variants={textVariants}>TEUKU FANDI</motion.h2>
-          <motion.h1 variants={textVariants}>Fullstack Web Developer</motion.h1>
+          <motion.h2 variants={textVariants}>{profileData.name.toUpperCase()}</motion.h2>
+          <motion.h1 variants={textVariants}>{profileData.role}</motion.h1>
+
+          <motion.p variants={textVariants} className="valueStatement">
+            {profileData.valueStatement}
+          </motion.p>
+
+          <motion.div variants={textVariants} className="skillBadgesContainer">
+            {profileData.coreSkills.map((skill) => (
+              <span key={skill} className="skillBadge">
+                {skill}
+              </span>
+            ))}
+          </motion.div>
+
           <motion.div variants={textVariants} className="buttons">
             <motion.button
               variants={textVariants}
               onClick={() => {
-                document
-                  .getElementById("Portfolio")
-                  .scrollIntoView({ behavior: "smooth" });
+                const el = document.getElementById("Portfolio");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
               }}
             >
-              See the Latest Projects
+              See Latest Projects
             </motion.button>
             <motion.button
               variants={textVariants}
               onClick={() => {
-                document
-                  .getElementById("Contact")
-                  .scrollIntoView({ behavior: "smooth" });
+                const el = document.getElementById("Contact");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
               }}
             >
               Contact Me
@@ -104,19 +94,6 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      <div className="codeDisplay">
-        <motion.div
-          className="typewriter"
-          key={snippetIndex}
-          custom={codeSnippets[snippetIndex].length}
-          variants={typewriterVariants}
-          initial="initial"
-          animate="animate"
-        >
-          {codeSnippets[snippetIndex]}
-        </motion.div>
-      </div>
-
       <motion.div
         className="slidingTextContainer"
         variants={sliderVariants}
@@ -124,7 +101,7 @@ const Hero = () => {
         animate="animate"
         style={{ userSelect: "none" }}
       >
-        Gamers Coding Enthusiast Chill
+        Fullstack Web Developer • Clean Architecture • Scalable Systems • RESTful API
       </motion.div>
       <div className="imageContainer">
         <img src="/hero.png" alt="Hero" />

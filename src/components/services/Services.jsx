@@ -1,9 +1,10 @@
 import { useRef } from "react";
 import "./services.scss";
-import { animate, motion, useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { servicesData } from "../../data/servicesData";
 
 const variants = {
-  inital: {
+  initial: {
     x: -500,
     y: 100,
     opacity: 0,
@@ -21,91 +22,56 @@ const variants = {
 
 const Services = () => {
   const ref = useRef();
-
   const isInView = useInView(ref, { margin: "-100px" });
 
   return (
     <motion.div
       className="services"
       variants={variants}
-      initial="inital"
-      //   animate="animate"
-      // whileInView={"animate"}
+      initial="initial"
       ref={ref}
-      animate={"animate"}
+      animate={isInView ? "animate" : "initial"}
     >
       <motion.div className="textContainer">
-        <p>Focusing on self branding and growth</p>
+        <p>Focusing on scalable backend engineering and modern frontend solutions</p>
         <hr />
       </motion.div>
       <motion.div className="titleContainer">
         <div className="title">
-          <img src="/people.webp" alt="" />
+          <img src="/people.webp" alt="People Working" />
           <h1>
-            No <motion.b whileHover={{ color: "orange" }}>Services</motion.b>
+            Engineering <motion.b whileHover={{ color: "orange" }}>Services</motion.b>
           </h1>
         </div>
         <div className="title">
           <h1>
-            Yet,{" "}
-            <motion.b whileHover={{ color: "orange" }}>Coming Soon.</motion.b>
+            Building <motion.b whileHover={{ color: "orange" }}>Scalable Apps.</motion.b>
           </h1>
-          <button>WHAT WE DO?</button>
+          <button onClick={() => {
+            const el = document.getElementById("Portfolio");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+          }}>
+            WHAT WE DO?
+          </button>
         </div>
       </motion.div>
       <motion.div className="listContainer">
-        <motion.div
-          className="box"
-          whileHover={{ background: "lightgray", color: "black" }}
-        >
-          <h2>Branding</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel
-            egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac
-            sodales id, porttitor vitae est. Donec laoreet rutrum libero sed
-            pharetra.
-          </p>
-          <button>Go</button>
-        </motion.div>
-        <motion.div
-          className="box"
-          whileHover={{ background: "lightgray", color: "black" }}
-        >
-          <h2>Branding</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel
-            egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac
-            sodales id, porttitor vitae est. Donec laoreet rutrum libero sed
-            pharetra.
-          </p>
-          <button>Go</button>
-        </motion.div>
-        <motion.div
-          className="box"
-          whileHover={{ background: "lightgray", color: "black" }}
-        >
-          <h2>Branding</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel
-            egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac
-            sodales id, porttitor vitae est. Donec laoreet rutrum libero sed
-            pharetra.
-          </p>
-          <button>Go</button>
-        </motion.div>
-        <motion.div
-          className="box"
-          whileHover={{ background: "lightgray", color: "black" }}
-        >
-          <h2>Branding</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel
-            egestas dolor, nec dignissim metus. Donec augue elit, rhoncus ac
-            sodales id, porttitor vitae est. Donec laoreet rutrum libero sed
-            pharetra.
-          </p>
-          <button>Go</button>
-        </motion.div>
+        {servicesData.map((service) => (
+          <motion.div
+            key={service.id}
+            className="box"
+          >
+            <h2>{service.title}</h2>
+            <p>{service.description}</p>
+            <div className="serviceTags">
+              {service.tags.map((tag) => (
+                <span key={tag} className="tagBadge">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+        ))}
       </motion.div>
     </motion.div>
   );
