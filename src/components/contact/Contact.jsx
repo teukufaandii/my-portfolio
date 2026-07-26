@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "./contact.scss";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import { profileData } from "../../data/profileData";
 
 const variants = {
   initial: {
@@ -19,45 +20,54 @@ const variants = {
 };
 
 const Contact = () => {
-
   const useIsMobile = () => {
     const [isMobile, setIsMobile] = useState(false);
-  
+
     useEffect(() => {
       const handleResize = () => {
         setIsMobile(window.innerWidth <= 738);
       };
-  
+
       handleResize();
-  
       window.addEventListener("resize", handleResize);
-  
       return () => {
         window.removeEventListener("resize", handleResize);
       };
     }, []);
-  
+
     return isMobile;
   };
 
   const formRef = useRef();
-  const isMobile = useIsMobile(); 
+  const isMobile = useIsMobile();
 
-  const [error, setError] = useState(false);
-  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState({ show: false, message: "", type: "success" });
+
+  const triggerToast = (message, type = "success") => {
+    setToast({ show: true, message, type });
+    setTimeout(() => {
+      setToast({ show: false, message: "", type: "success" });
+    }, 4000);
+  };
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setLoading(true);
+
     emailjs
       .sendForm("service_uyzpuvb", "template_hdqg38i", formRef.current, {
         publicKey: "rHIQ5JHLvYCsi-Z2w",
       })
       .then(
-        (result) => {
-          setSuccess(true);
+        () => {
+          setLoading(false);
+          triggerToast("Pesan Berhasil Terkirim! Terima kasih telah menghubungi.", "success");
+          if (formRef.current) formRef.current.reset();
         },
         (error) => {
-          setError(true);
+          setLoading(false);
+          triggerToast("Gagal mengirim pesan. Silakan coba lagi.", "error");
         }
       );
   };
@@ -65,6 +75,7 @@ const Contact = () => {
   return (
     <motion.div
       className="contact"
+      id="Contact"
       variants={variants}
       initial="initial"
       animate="animate"
@@ -73,16 +84,16 @@ const Contact = () => {
       <motion.div className="textContainer" variants={variants}>
         <motion.h1>Get in touch</motion.h1>
         <motion.div variants={variants} className="item">
-          <h2>Mail</h2>
-          <span>tfandiahmad32@gmail.com</span>
+          <h2>Email</h2>
+          <span>{profileData.contact.email}</span>
         </motion.div>
         <motion.div variants={variants} className="item">
-          <h2>Adress</h2>
-          <span>Jakarta, Indonesia</span>
+          <h2>Location</h2>
+          <span>{profileData.contact.location}</span>
         </motion.div>
         <motion.div variants={variants} className="item">
           <h2>Phone</h2>
-          <span>+62-822-1169-6095</span>
+          <span>{profileData.contact.phone}</span>
         </motion.div>
       </motion.div>
       <div className="formContainer">
@@ -126,13 +137,24 @@ const Contact = () => {
           }}
         >
           <input type="text" required placeholder="Name" name="name" />
-          <input type="text" required placeholder="Email" name="email" />
+          <input type="email" required placeholder="Email" name="email" />
           <textarea rows={8} required placeholder="Message" name="message" />
-          <button>Submit</button>
-          {error && "Something went wrong!"}
-          {success && "Message sent successfully!"}
+          <button type="submit" disabled={loading}>
+            {loading ? "Sending..." : "Submit"}
+          </button>
         </motion.form>
       </div>
+
+      {toast.show && (
+        <motion.div
+          className={`toastNotification ${toast.type}`}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 50 }}
+        >
+          {toast.message}
+        </motion.div>
+      )}
     </motion.div>
   );
 };

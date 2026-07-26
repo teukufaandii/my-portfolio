@@ -11,6 +11,7 @@
     text-align: center;
     color: orange;
     font-size: 36px;
+    z-index: 10;
 
     @include mobile {
       padding-top: calc(100vh - 100px);
@@ -39,27 +40,72 @@
       align-items: center;
       justify-content: center;
       gap: 50px;
+      padding: 20px;
 
       @include mobile {
         flex-direction: column;
+        gap: 20px;
       }
 
-      .imageContainer {
+      .gradientCard {
         flex: 1;
-        height: 50%;
+        height: 380px;
+        width: 100%;
+        border-radius: 20px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 
         @include mobile {
           width: 100%;
-          max-height: 300px;
+          height: 220px;
+          padding: 15px;
         }
 
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
+        &.purple {
+          background: linear-gradient(135deg, #1e053a, #531179, #0c0c1d);
+          border: 1px solid rgba(147, 51, 234, 0.3);
+        }
+        &.blue {
+          background: linear-gradient(135deg, #031b34, #0e4b86, #0c0c1d);
+          border: 1px solid rgba(14, 165, 233, 0.3);
+        }
+        &.orange {
+          background: linear-gradient(135deg, #381a02, #884305, #0c0c1d);
+          border: 1px solid rgba(249, 115, 22, 0.3);
+        }
+        &.green {
+          background: linear-gradient(135deg, #032b17, #0b693a, #0c0c1d);
+          border: 1px solid rgba(34, 197, 94, 0.3);
+        }
 
-          @include mobile {
-            object-fit: contain;
+        .cardBadge {
+          align-self: flex-start;
+          padding: 6px 14px;
+          background-color: rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(10px);
+          color: #ffffff;
+          border-radius: 20px;
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+        }
+
+        .techIconDisplay {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+
+          .techIconPill {
+            padding: 5px 12px;
+            background-color: rgba(0, 0, 0, 0.4);
+            color: #e2e8f0;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
           }
         }
       }
@@ -68,46 +114,80 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 20px;
 
         @include mobile {
           transform: none !important;
           padding: 10px;
           align-items: center;
           text-align: center;
+          gap: 12px;
         }
 
         h2 {
-          font-size: 72px;
+          font-size: 40px;
+          font-weight: 700;
+          color: white;
 
           @include mobile {
-            font-size: 36px;
-            position: relative;
-            bottom: 70px;
+            font-size: 24px;
           }
         }
 
         p {
-          color: gray;
-          font-style: 20px;
+          color: lightgray;
+          font-size: 15px;
+          line-height: 1.6;
 
           @include mobile {
-            font-size: 14px;
-            position: relative;
-            bottom: 80px;
+            font-size: 13px;
           }
         }
 
-        button {
-          background-color: orange;
-          border: none;
-          border-radius: 10px;
-          padding: 10px;
-          width: 200px;
+        .techStackContainer {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
 
-          @include mobile {
-            position: relative;
-            bottom: 90px;
+          .techTag {
+            padding: 4px 10px;
+            background-color: rgba(255, 165, 0, 0.15);
+            color: orange;
+            border: 1px solid rgba(255, 165, 0, 0.3);
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+          }
+        }
+
+        .actionContainer {
+          margin-top: 10px;
+
+          button {
+            border: none;
+            border-radius: 10px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &.privateBadge {
+              background-color: rgba(255, 255, 255, 0.1);
+              color: #a0aec0;
+              border: 1px solid rgba(255, 255, 255, 0.2);
+              cursor: not-allowed;
+            }
+
+            &.publicLink {
+              background-color: orange;
+              color: black;
+
+              &:hover {
+                background-color: #e69500;
+                transform: translateY(-2px);
+              }
+            }
           }
         }
       }
