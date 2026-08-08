@@ -11,6 +11,7 @@ export const profileData = {
   socials: [
     { name: "GitHub", url: "https://github.com/teukufaandii", icon: "/icons/github.svg" },
     { name: "LinkedIn", url: "https://linkedin.com", icon: "/icons/linkedin.svg" },
+    { name: "Email", url: "mailto:teukufandi14@gmail.com", icon: "/icons/email.svg" },
     { name: "Instagram", url: "https://instagram.com", icon: "/icons/instagram.svg" }
   ],
   coreSkills: [

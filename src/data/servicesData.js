@@ -7,7 +7,7 @@ export const servicesData = [
   },
   {
     id: 2,
-    title: "Database & Performance Tuning",
+    title: "Database & Performance Optimization",
     description: "Pengelolaan skema PostgreSQL & MySQL, pencatatan caching Redis, serta optimasi kueri basis data (database indexing & N+1 query solver) dan async Goroutines processing.",
     tags: ["PostgreSQL", "MySQL", "Redis", "Indexing", "N+1 Solver"]
   },
