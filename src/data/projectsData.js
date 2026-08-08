@@ -1,15 +1,5 @@
 export const projectsData = [
   {
-    id: "enterprise-web-arch",
-    title: "Enterprise Web Architecture & Backend API as an Intern in OttoDigital",
-    category: "Web Engineering Internship",
-    img: "/ottodigital.webp",
-    desc: "Pengembangan arsitektur backend RESTful API menggunakan Golang (Gin, GORM) dengan Clean Architecture, sistem RBAC dinamis, optimasi performa via Goroutines & Redis Caching, serta integrasi frontend React & Redux Toolkit.",
-    techStack: ["Golang", "Gin", "PostgreSQL", "Redis", "Docker", "React", "Tailwind CSS"],
-    link: "#",
-    isPrivate: true
-  },
-  {
     id: "surat-kampus",
     title: "Sistem Surat Menyurat Kampus ITB Ahmad Dahlan",
     category: "Campus Core System",
@@ -18,6 +8,16 @@ export const projectsData = [
     techStack: ["PHP Native", "MySQL", "JavaScript", "Session Middleware"],
     link: "https://github.com/teukufaandii/teknoid-itbad",
     isPrivate: false
+  },
+  {
+    id: "enterprise-web-arch",
+    title: "Enterprise Web Architecture & Backend API as an Intern in OttoDigital",
+    category: "Web Engineering Internship",
+    img: "/ottodigital.webp",
+    desc: "Pengembangan arsitektur backend RESTful API menggunakan Golang (Gin, GORM) dengan Clean Architecture, sistem RBAC dinamis, optimasi performa via Goroutines & Redis Caching, serta integrasi frontend React & Redux Toolkit.",
+    techStack: ["Golang", "Gin", "PostgreSQL", "Redis", "Docker", "React", "Tailwind CSS"],
+    link: "#",
+    isPrivate: true
   },
   {
     id: "absensi-kampus",
@@ -40,3 +40,4 @@ export const projectsData = [
     isPrivate: true
   }
 ];
+
